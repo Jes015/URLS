@@ -1,6 +1,6 @@
 'use client'
-import { globalLoaderStateService } from '@/components/GlobalLoader/services'
 import { BaseComponentProps } from '@/models/component.model'
+import { globalLoaderStateService } from '@/services/client/global-loader.service'
 import DefaultLink, { type LinkProps } from 'next/link'
 import { forwardRef } from 'react'
 
