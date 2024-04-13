@@ -1,4 +1,5 @@
-import { Sidebar } from '@/components/feat/Header'
+import { GlobalLoader } from '@/components/feat/GlobalLoader/GlobalLoader'
+import { Sidebar } from '@/components/feat/Sidebar'
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from "next"
 import "./globals.css"
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
+        <GlobalLoader />
         <div className='flex w-full'>
           <Sidebar className='border-r' />
           {children}

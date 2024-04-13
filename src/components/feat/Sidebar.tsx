@@ -2,7 +2,7 @@ import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
 import { DashboardIcon, HomeIcon, MixIcon, PersonIcon } from "@radix-ui/react-icons"
 import clsx from "clsx"
-import Link from "next/link"
+import { Link } from "../ui/Link"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip"
 
 const sidebarMenu = [
@@ -25,7 +25,7 @@ export const Sidebar: BaseComponentType = ({ className, ...props }) => {
         <aside
             className={
                 clsx(
-                    "flex flex-col items-center p-4",
+                    "flex flex-col items-center p-4 h-dvh",
                     className
                 )
             }
@@ -45,7 +45,7 @@ export const Sidebar: BaseComponentType = ({ className, ...props }) => {
                                     <Link
                                         className={
                                             clsx(
-                                                "flex justify-center items-center p-4 bg-zinc-50 hover:bg-zinc-200 rounded-sm",
+                                                "flex text-zinc-800 justify-center items-center p-4 bg-zinc-50 hover:bg-zinc-200 rounded-sm",
                                                 index === 1 && '!bg-[#0f172a] !text-white'
                                             )
                                         }
