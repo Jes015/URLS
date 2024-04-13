@@ -1,5 +1,7 @@
 import { GlobalLoader } from '@/components/feat/GlobalLoader/GlobalLoader'
 import { Sidebar } from '@/components/feat/Sidebar'
+import { Highlight } from '@/components/ui/Highlight'
+import { BookmarkFilledIcon, GitHubLogoIcon } from '@radix-ui/react-icons'
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from "next"
 import "./globals.css"
@@ -20,7 +22,34 @@ export default function RootLayout({
         <GlobalLoader />
         <div className='flex w-full'>
           <Sidebar className='border-r' />
-          {children}
+          <div className='flex flex-col min-h-dvh w-full overflow-y-auto'>
+            <div className='flex justify-between border-b w-full p-2 text-xs text-zinc-700 bg-white'>
+              <div className='flex gap-1 items-center'>
+                <BookmarkFilledIcon width={16} height={16} className='text-zinc-900' />
+                <div className='flex gap-1'>
+                  <Highlight variant='waves'>
+                    URLS
+                  </Highlight>
+                  <span>
+                    was made for the
+                  </span>
+                </div>
+                <a
+                  href='https://supabase.com/blog/supabase-oss-hackathon'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  April{'\''}s 2024 Supabase Hackaton
+                </a>
+              </div>
+              <div>
+                <a href='https://github.com/Jes015/URLS' target='_blank'>
+                  <GitHubLogoIcon width={18} height={18}/>
+                </a>
+              </div>
+            </div>
+            {children}
+          </div>
         </div>
       </body>
     </html>
