@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <GlobalLoader />
-        <div className='flex w-full font-sans'>
+        <div className='flex w-full font-sans max-w-[1440px] m-auto'>
           <Sidebar className='border-r' />
           <div className='flex flex-col min-h-dvh w-full overflow-y-auto'>
             <div className='flex justify-between border-b w-full p-2 text-xs text-zinc-700 bg-white'>

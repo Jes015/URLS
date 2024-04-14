@@ -42,7 +42,7 @@ export const DashboardSearchField: FC<PartialSheetProps> = ({ className, ...prop
                 </TextField.Label>
                 <input
                     className="outline-none w-full"
-                    placeholder="Search url"
+                    placeholder="Search shorted urls"
                     onChange={handleOnInputToSearch}
                     ref={inputRef as LegacyRef<HTMLInputElement>}
                 />
