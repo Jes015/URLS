@@ -8,7 +8,7 @@ export const Sidebar: BaseComponentType = ({ className, ...props }) => {
         <aside
             className={
                 clsx(
-                    "flex flex-col items-center p-4 h-dvh bg-white",
+                    "sticky top-0 z-50 flex flex-col items-center p-4 h-dvh bg-white",
                     className
                 )
             }
