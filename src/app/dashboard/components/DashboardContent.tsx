@@ -13,7 +13,7 @@ export const DashboardContent: BaseComponentType = (props) => {
             ref={parent}
         >
             {
-                Array(50).fill(null).map((_, index) => (
+                Array(40).fill(null).map((_, index) => (
                     <LinkInfo key={index}/>
                 ))
             }
