@@ -2,6 +2,7 @@ import { GlobalLoader } from '@/components/feat/GlobalLoader/GlobalLoader'
 import { Sidebar } from '@/components/feat/Sidebar'
 import { Highlight } from '@/components/ui/Highlight'
 import { BookmarkFilledIcon, GitHubLogoIcon } from '@radix-ui/react-icons'
+import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from "next"
 import "./globals.css"
@@ -18,9 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>
+      <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <GlobalLoader />
-        <div className='flex w-full'>
+        <div className='flex w-full font-sans'>
           <Sidebar className='border-r' />
           <div className='flex flex-col min-h-dvh w-full overflow-y-auto'>
             <div className='flex justify-between border-b w-full p-2 text-xs text-zinc-700 bg-white'>
@@ -44,11 +45,13 @@ export default function RootLayout({
               </div>
               <div>
                 <a href='https://github.com/Jes015/URLS' target='_blank'>
-                  <GitHubLogoIcon width={18} height={18}/>
+                  <GitHubLogoIcon width={18} height={18} />
                 </a>
               </div>
             </div>
-            {children}
+            <main>
+              {children}
+            </main>
           </div>
         </div>
       </body>
