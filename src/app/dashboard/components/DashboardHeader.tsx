@@ -1,12 +1,11 @@
 'use client'
 import { Sheet } from "@/components/ui/Sheet"
-import { TextField } from "@/components/ui/TextField/TextField"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { BaseComponentType } from "@/models/component.model"
 import { ArchiveIcon, PlusIcon } from "@radix-ui/react-icons"
 import clsx from "clsx"
+import { DashboardForm } from "./DashboardForm/DashboardForm"
 import { DashboardSearchField } from "./DashboardSearchField/DashboardSearchField"
 
 export const DashboardHeader: BaseComponentType = ({ className, ...props }) => {
@@ -25,7 +24,7 @@ export const DashboardHeader: BaseComponentType = ({ className, ...props }) => {
                 className="bg-white flex items-center gap-2 text-xs font-mono font-semibold px-4"
             >
                 <ArchiveIcon className="text-black" width={18} height={18} />
-                01/50
+                01/40
             </Sheet>
             <Dialog>
                 <DialogTrigger>
@@ -37,23 +36,15 @@ export const DashboardHeader: BaseComponentType = ({ className, ...props }) => {
                 <DialogContent className="font-sans">
                     <DialogHeader>
                         <DialogTitle>Add a link</DialogTitle>
+                        <DialogDescription>
+                            The url will be copied to your clipboard when you click add
+                        </DialogDescription>
                     </DialogHeader>
-                    <div>
-                        <form 
-                            action=""
-                            className="flex flex-col gap-2"
-                        >
-                            <TextField>
-                                <TextField.Label>
-                                    Link
-                                </TextField.Label>
-                                <Input placeholder="https://ui.shadcn.com/docs/components/dialog" />
-                            </TextField>
-                            <Button>Add</Button>
-                        </form>
+                    <div className="flex flex-col gap-2">
+                        <DashboardForm />
                     </div>
                 </DialogContent>
-            </Dialog>
+            </Dialog >
         </header >
     )
 }

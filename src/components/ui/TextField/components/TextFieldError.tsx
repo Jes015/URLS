@@ -1,7 +1,7 @@
-import { type BaseComponentType } from '@/models'
+import { type BaseComponentType } from '@/models/component.model'
 import clsx from 'clsx'
 
-export const TextFieldError: BaseComponentType = ({ className, hidden, children, ...props }) => {
+export const TextFieldError: BaseComponentType = ({ className, children, ...props }) => {
   return (
     <span
       className={
@@ -12,7 +12,7 @@ export const TextFieldError: BaseComponentType = ({ className, hidden, children,
       }
       {...props}
     >
-      {hidden != null && children}
+      {children}
     </span>
   )
 }
