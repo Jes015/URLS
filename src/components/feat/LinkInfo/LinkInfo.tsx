@@ -9,6 +9,7 @@ import styles from './link-info.module.css'
 
 export interface LinkInfoProps extends PartialSheetProps {
     data: Link
+    deletable: boolean
 }
 
 export const LinkInfo = forwardRef<HTMLDivElement, LinkInfoProps>(
@@ -16,7 +17,7 @@ export const LinkInfo = forwardRef<HTMLDivElement, LinkInfoProps>(
 
         const [copyStatus, setCopyStatus] = useState<'copying' | 'copied' | 'waiting'>('waiting')
 
-        const handleOnClickToCopyLink = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const handleOnClickToCopyLink = async () => {
             const urlsUrl = getUrlsLink(props.data.urlsId)
 
             setCopyStatus('copying')
@@ -64,12 +65,16 @@ export const LinkInfo = forwardRef<HTMLDivElement, LinkInfoProps>(
                     </div>
                 </div>
                 <div className="flex items-center pl-2 border-l">
-                    <button
-                        aria-label="Delete url"
-                        className="p-2 rounded-sm hover:bg-neutral-100 h-full"
-                    >
-                        <TrashIcon width={17} height={17} />
-                    </button>
+                    {
+                        props.deletable && (
+                            <button
+                                aria-label="Delete url"
+                                className="p-2 rounded-sm hover:bg-neutral-100 h-full"
+                            >
+                                <TrashIcon width={17} height={17} />
+                            </button>
+                        )
+                    }
                     <button
                         aria-label="Copy url"
                         className="p-2 rounded-sm hover:bg-neutral-100 h-full"
@@ -77,7 +82,7 @@ export const LinkInfo = forwardRef<HTMLDivElement, LinkInfoProps>(
                     >
                         {copyStatus === 'waiting' && <CopyIcon width={17} height={17} />}
                         {copyStatus === 'copying' && <CheckCircledIcon width={17} height={17} />}
-                        {copyStatus === 'copied' && <CheckCircledIcon width={17} height={17} className="text-green-500"/>}
+                        {copyStatus === 'copied' && <CheckCircledIcon width={17} height={17} className="text-green-500" />}
                     </button>
                 </div>
             </Sheet>
