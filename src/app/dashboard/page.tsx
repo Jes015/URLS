@@ -4,7 +4,7 @@ import { DashboardHeader } from "./components/DashboardHeader"
 
 const DashboardPage: PageType = () => {
     return (
-        <div className="flex flex-col m-2 gap-2">
+        <div className="flex flex-col gap-2">
             <DashboardHeader />
             <DashboardContent />
         </div>

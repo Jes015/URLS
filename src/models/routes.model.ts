@@ -1,8 +1,4 @@
 export const frontRoutes = {
-    home: {
-        name: 'Home',
-        path: '/',
-    },
     dashboard: {
         name: 'Dashboard',
         path: '/dashboard'

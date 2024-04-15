@@ -49,7 +49,7 @@ export default function RootLayout({
                 </a>
               </div>
             </div>
-            <main>
+            <main className='m-2'>
               {children}
             </main>
           </div>

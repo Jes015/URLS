@@ -1,7 +1,7 @@
 'use client'
 import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
-import { DashboardIcon, HomeIcon, MixIcon } from "@radix-ui/react-icons"
+import { HomeIcon, MixIcon } from "@radix-ui/react-icons"
 import clsx from "clsx"
 import { usePathname } from "next/navigation"
 import { Link } from "../ui/Link"
@@ -10,12 +10,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/
 
 const sidebarMenu = [
     {
-        ...frontRoutes.home,
-        icon: HomeIcon
-    },
-    {
         ...frontRoutes.dashboard,
-        icon: DashboardIcon
+        icon: HomeIcon
     },
     {
         ...frontRoutes.latestLinks,
