@@ -1,4 +1,4 @@
-import { GlobalLoader } from '@/components/feat/GlobalLoader/GlobalLoader'
+import { GlobalClientComponents } from '@/components/feat/GlobalClientComponents'
 import { Sidebar } from '@/components/feat/Sidebar'
 import { Highlight } from '@/components/ui/Highlight'
 import { BookmarkFilledIcon, GitHubLogoIcon } from '@radix-ui/react-icons'
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
-        <GlobalLoader />
+        <GlobalClientComponents />
         <div className='flex w-full font-sans max-w-[1440px] m-auto'>
           <Sidebar className='border-r' />
           <div className='flex flex-col min-h-dvh w-full overflow-y-auto'>

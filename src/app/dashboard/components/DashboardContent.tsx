@@ -14,7 +14,7 @@ export const DashboardContent: BaseComponentType = (props) => {
         >
             {
                 Array(40).fill(null).map((_, index) => (
-                    <LinkInfo key={index}/>
+                    <LinkInfo data={{ realUrl: 'http://localhost:3000/dashboard', urlsId: 'jbaby' }} key={index}/>
                 ))
             }
         </div>

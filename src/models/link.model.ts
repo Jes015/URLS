@@ -1,4 +1,4 @@
 export interface Link {
-    shortedUrl: string
+    urlsId: string
     realUrl:  string
 }
