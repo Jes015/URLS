@@ -27,7 +27,7 @@ export const DashboardHeader: BaseComponentType = ({ className, ...props }) => {
                 01/40
             </Sheet>
             <Dialog>
-                <DialogTrigger>
+                <DialogTrigger asChild>
                     <Button className="flex gap-2 h-10 text-sm" aria-label="add url">
                         <PlusIcon width={14} height={14} className=" aspect-square scale-150" />
                         Add link
