@@ -41,7 +41,7 @@ export const DashboardSearchField: FC<PartialSheetProps> = ({ className, ...prop
                     <MagnifyingGlassIcon width={20} height={20} />
                 </TextField.Label>
                 <input
-                    className="outline-none w-full"
+                    className="outline-none w-full min-h-[38px] sm:min-h-[auto]"
                     placeholder="Search shorted urls"
                     onChange={handleOnInputToSearch}
                     ref={inputRef as LegacyRef<HTMLInputElement>}

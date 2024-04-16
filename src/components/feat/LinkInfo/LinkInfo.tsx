@@ -1,11 +1,10 @@
 'use client'
 import { PartialSheetProps, Sheet } from "@/components/ui/Sheet"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Link } from "@/models/link.model"
 import { getUrlsLink } from "@/utils/link.util"
 import { CheckCircledIcon, CopyIcon, Link2Icon, TrashIcon } from "@radix-ui/react-icons"
-import clsx from "clsx"
 import { forwardRef, useState } from "react"
-import styles from './link-info.module.css'
 
 export interface LinkInfoProps extends PartialSheetProps {
     data: Link
@@ -43,25 +42,29 @@ export const LinkInfo = forwardRef<HTMLDivElement, LinkInfoProps>(
                     <div className="flex items-center text-sm gap-1 ml-1 text-zinc-950">
                         <Link2Icon width={18} height={18} />
                         <div
-                            className={
-                                clsx(
-                                    "flex-grow overflow-clip relative",
-                                    styles['link-info__text']
-                                )
-                            }
+                            className="flex-grow overflow-clip relative"
                         >
                             <div
-                                className="flex items-center gap-1 text-sm hover:-translate-x-1/4 [transition-duration:0.3s]"
+                                className="flex items-center gap-1 text-sm"
                             >
                                 <span className="font-medium text-xs">urls/<span className="text-zinc-700 font-bold">{props.data.urlsid}</span></span>
                                 <span className="font-semibold">to</span>
-                                <a
-                                    href="/"
-                                    className="text-blue-500 decoration-solid font-semibold text-xs line-clamp-1"
-                                    target="_blank"
-                                >
-                                    {props.data.realurl}
-                                </a>
+                                <TooltipProvider>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <a
+                                                href="/"
+                                                className="text-blue-500 decoration-solid font-semibold text-xs whitespace-nowrap"
+                                                target="_blank"
+                                            >
+                                                {props.data.realurl}
+                                            </a>
+                                        </TooltipTrigger>
+                                        <TooltipContent className="w-auto">
+                                            {props.data.realurl}
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
                             </div>
                         </div>
                     </div>

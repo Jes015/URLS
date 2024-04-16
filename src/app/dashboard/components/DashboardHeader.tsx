@@ -11,20 +11,22 @@ export const DashboardHeader: BaseComponentType = ({ className, ...props }) => {
         <header
             className={
                 clsx(
-                    "flex items-stretch justify-end w-full gap-2",
+                    "flex items-stretch flex-col sm:flex-row justify-end w-full gap-2",
                     className
                 )
             }
             {...props}
         >
-            <DashboardSearchField />
-            <Sheet
-                className="bg-white flex items-center gap-2 text-xs font-mono font-semibold px-4"
-            >
-                <ArchiveIcon className="text-black" width={18} height={18} />
-                01/40
-            </Sheet>
-            <DashboardFormModal />
+            <DashboardSearchField className="order-3 sm:order-1"/>
+            <div className="flex gap-2 order-2 justify-end sm:order-1 sm:flex-row">
+                <Sheet
+                    className="bg-white flex items-center gap-2 text-xs font-mono font-semibold px-4"
+                >
+                    <ArchiveIcon className="text-black" width={18} height={18} />
+                    01/40
+                </Sheet>
+                <DashboardFormModal />
+            </div>
         </header >
     )
 }
