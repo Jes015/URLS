@@ -1,9 +1,15 @@
 'use client'
 import { LinksInfoSection } from "@/components/feat/LinksInfoSection"
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentProps } from "@/models/component.model"
+import { LinkArray } from "@/models/link.model"
+import { FC } from "react"
 
-export const DashboardContent: BaseComponentType = (props) => {
+interface DashboardContentProps extends BaseComponentProps {
+    links: LinkArray
+}
+
+export const DashboardContent: FC<DashboardContentProps> = ({ links, ...props }) => {
     return (
-        <LinksInfoSection deletable links={Array(40)} />
+        <LinksInfoSection deletable {...{ links }} />
     )
 }

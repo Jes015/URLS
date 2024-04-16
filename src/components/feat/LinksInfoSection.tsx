@@ -20,10 +20,11 @@ export const LinksInfoSection: FC<LinksInfoSectionProps> = ({ links, deletable, 
             {...props}
         >
             {
-                Array(links.length).fill(null).map((_, index) => (
+                links.map((link) => (
                     <LinkInfo
-                        key={index}
-                        {...{ deletable, data: { realUrl: 'http://localhost:3000/dashboard', urlsId: 'jbaby' } }}
+                        key={link.urlsid}
+                        data={link}
+                        {...{ deletable }}
                     />
                 ))
             }

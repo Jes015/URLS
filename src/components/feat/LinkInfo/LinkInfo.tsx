@@ -15,10 +15,12 @@ export interface LinkInfoProps extends PartialSheetProps {
 export const LinkInfo = forwardRef<HTMLDivElement, LinkInfoProps>(
     (props, ref) => {
 
+        console.log({ data: props.data })
+
         const [copyStatus, setCopyStatus] = useState<'copying' | 'copied' | 'waiting'>('waiting')
 
         const handleOnClickToCopyLink = async () => {
-            const urlsUrl = getUrlsLink(props.data.urlsId)
+            const urlsUrl = getUrlsLink(props.data.urlsid)
 
             setCopyStatus('copying')
 
@@ -51,14 +53,14 @@ export const LinkInfo = forwardRef<HTMLDivElement, LinkInfoProps>(
                             <div
                                 className="flex items-center gap-1 text-sm hover:-translate-x-1/4 [transition-duration:0.3s]"
                             >
-                                <span className="font-medium text-xs">urls/<span className="text-zinc-700 font-bold">{props.data.urlsId}</span></span>
+                                <span className="font-medium text-xs">urls/<span className="text-zinc-700 font-bold">{props.data.urlsid}</span></span>
                                 <span className="font-semibold">to</span>
                                 <a
                                     href="/"
-                                    className="text-blue-500 decoration-solid font-semibold text-xs"
+                                    className="text-blue-500 decoration-solid font-semibold text-xs line-clamp-1"
                                     target="_blank"
                                 >
-                                    {props.data.realUrl}
+                                    {props.data.realurl}
                                 </a>
                             </div>
                         </div>

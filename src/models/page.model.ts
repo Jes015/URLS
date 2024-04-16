@@ -1,7 +1,11 @@
 import { FC } from "react"
 
+export interface PramsProps {
+  slug: string
+}
+
 export interface PageProps {
-    params: string
+    params: PramsProps
     searchParams: Record<string, string>
   }
   
