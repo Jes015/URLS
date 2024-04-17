@@ -1,4 +1,5 @@
 'use client'
+import { CircularLoading } from "@/components/ui/CircularLoading"
 import { TextField } from "@/components/ui/TextField/TextField"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -79,7 +80,7 @@ export const AuthModal: BaseComponentType = () => {
                         disabled={loading}
                     >
                         {
-                            loading ? <div className="scale-75"><div className="w-8 h-8 border-4 border-dashed rounded-full animate-spin border-white"></div></div> : 'Sign in'
+                            loading ? <div className="scale-75"><CircularLoading /></div> : 'Sign in'
                         }
                     </Button>
                     <Button
@@ -87,7 +88,7 @@ export const AuthModal: BaseComponentType = () => {
                         onClick={handleOnSubmitToSignUp}
                     >
                         {
-                            loading ? <div className="scale-50"><div className="w-8 h-8 border-4 border-dashed rounded-full animate-spin border-white"></div></div> : 'Sign up'
+                            loading ? <div className="scale-50"><CircularLoading /></div> : 'Sign up'
                         }
                     </Button>
                 </div>
