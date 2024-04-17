@@ -24,7 +24,7 @@ export const addLink = async (link: CreateLinkDto) => {
         if (response.error != null) {
             customResponse.statusCode = 500
             customResponse.message = response.error.message
-        } 
+        }
         else {
             customResponse.statusCode = 200
             customResponse.message = 'Url added'
@@ -34,7 +34,34 @@ export const addLink = async (link: CreateLinkDto) => {
     return customResponse
 }
 
-const removeLink = () => { }
+export const removeLink = async (urlsId: string) => {
+    const supabase = createClient()
+
+    const user = await getUserServer()
+
+    let customResponse = {
+        message: 'User session does not exits',
+        statusCode: 401
+    }
+
+    if (user != null) {
+        const response = await supabase
+            .from('user_links')
+            .delete()
+            .eq('urlsid', urlsId)
+
+        if (response.error != null) {
+            customResponse.statusCode = 500
+            customResponse.message = response.error.message
+        }
+        else {
+            customResponse.statusCode = 200
+            customResponse.message = 'Url deleted'
+        }
+    }
+
+    return customResponse
+}
 
 export const getUserLinks = async (): Promise<LinkArray> => {
     const supabase = createClient()

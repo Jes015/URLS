@@ -8,7 +8,7 @@ const DashboardPage: PageType = async () => {
 
     return (
         <div className="flex flex-col gap-2">
-            <DashboardHeader />
+            <DashboardHeader linksCount={links.length} />
             <DashboardContent {...{ links }} />
         </div>
     )

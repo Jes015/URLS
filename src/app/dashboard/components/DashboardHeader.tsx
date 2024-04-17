@@ -1,12 +1,17 @@
 'use client'
 import { Sheet } from "@/components/ui/Sheet"
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentProps } from "@/models/component.model"
 import { ArchiveIcon } from "@radix-ui/react-icons"
 import clsx from "clsx"
+import { FC } from "react"
 import { DashboardFormModal } from "./DashboardFormModal"
 import { DashboardSearchField } from "./DashboardSearchField/DashboardSearchField"
 
-export const DashboardHeader: BaseComponentType = ({ className, ...props }) => {
+export interface DashboardHeaderProps extends BaseComponentProps {
+    linksCount: number
+}
+
+export const DashboardHeader: FC<DashboardHeaderProps> = ({ className, linksCount, ...props }) => {
     return (
         <header
             className={
@@ -23,7 +28,7 @@ export const DashboardHeader: BaseComponentType = ({ className, ...props }) => {
                     className="bg-white flex items-center gap-2 text-xs font-mono font-semibold px-4"
                 >
                     <ArchiveIcon className="text-black" width={18} height={18} />
-                    01/40
+                    {linksCount}/40
                 </Sheet>
                 <DashboardFormModal />
             </div>
