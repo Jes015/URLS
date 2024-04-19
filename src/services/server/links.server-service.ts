@@ -3,7 +3,7 @@ import { CreateLinkDto, Link, LinkArray } from "@/models/link.model"
 import { createClient } from "@/utils/supabase/server"
 import { getUserServer } from "./auth.server-service"
 
-export const addLink = async (link: CreateLinkDto) => {
+export const addLink = async (link: Omit<CreateLinkDto, 'user_id'>) => {
     const supabase = createClient()
 
     const user = await getUserServer()
@@ -80,7 +80,7 @@ export const getUserLinks = async (searchParam: string): Promise<LinkArray> => {
             .select('*')
             .eq('user_id', user.id)
             ?.ilike('urlsid', `%${searchParam}%`)
-            
+
         } else {
             response = await supabase
                 .from('user_links')

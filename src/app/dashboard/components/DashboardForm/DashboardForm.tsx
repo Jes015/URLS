@@ -21,7 +21,9 @@ export const DashboardForm: BaseComponentType = (props) => {
     const {
         register,
         formState: { errors },
-        handleSubmit }
+        reset,
+        handleSubmit
+    }
         = useForm<InputsDashboardFormSchemaType>({
             resolver: zodResolver(inputsDashboardFormSchema)
         })
@@ -35,9 +37,10 @@ export const DashboardForm: BaseComponentType = (props) => {
         if (statusCode <= 199 || statusCode >= 300) {
             toastType = 'error'
         } else {
+            reset()
             refresh()
         }
-        
+
         setLoading(false)
 
         toast[toastType](message)

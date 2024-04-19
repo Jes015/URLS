@@ -8,7 +8,7 @@ export const inputsDashboardForm = {
 
 export const inputsDashboardFormSchema = z.object({
     realurl: z.string().url(),
-    urlsid: z.string().min(4)
+    urlsid: z.string().min(4).transform((arg) => arg.replaceAll(' ', '-'))
 })
 
 export type InputsDashboardFormSchemaType = z.infer<typeof inputsDashboardFormSchema>
