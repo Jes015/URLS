@@ -64,7 +64,7 @@ export const removeLink = async (urlsId: string) => {
     return customResponse
 }
 
-export const getUserLinks = async (searchParam: string): Promise<LinkArray> => {
+export const getUserLinks = async (searchParam: string | null): Promise<LinkArray> => {
     const supabase = createClient()
 
     const user = await getUserServer()
@@ -76,10 +76,10 @@ export const getUserLinks = async (searchParam: string): Promise<LinkArray> => {
         let response = null
         if (searchParam != null) {
             response = await supabase
-            .from('user_links')
-            .select('*')
-            .eq('user_id', user.id)
-            ?.ilike('urlsid', `%${searchParam}%`)
+                .from('user_links')
+                .select('*')
+                .eq('user_id', user.id)
+                ?.ilike('urlsid', `%${searchParam}%`)
 
         } else {
             response = await supabase
@@ -108,4 +108,20 @@ export const getOneLink = async (linkId: string): Promise<Link | null> => {
     return response.data ?? null
 }
 
-const getPublicLinks = () => { }
+export const getPublicLinks = async (limit: number = 50) => {
+    const supabase = createClient()
+
+    let userLinks: LinkArray = []
+
+
+    let response = await supabase.from('user_links')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(limit)
+
+    if (response?.data != null) {
+        userLinks = response.data
+    }
+
+    return userLinks
+}

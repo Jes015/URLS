@@ -6,7 +6,7 @@ import { DashboardHeader } from "./components/DashboardHeader"
 
 const DashboardPage: PageType = async ({ searchParams }) => {
 
-    const searchParam = searchParams?.q
+    const searchParam = searchParams?.q || null
 
     const user = await getUserServer()
 
