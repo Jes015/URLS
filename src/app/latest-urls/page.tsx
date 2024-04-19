@@ -1,8 +1,13 @@
 import { LinksInfoSection } from "@/components/feat/LinksInfoSection"
 import { Sheet } from "@/components/ui/Sheet"
 import { PageType } from "@/models/page.model"
+import { getPublicLinks } from "@/services/server/links.server-service"
 
-const LatestUrlsPage: PageType = () => {
+const LatestUrlsPage: PageType = async ({ searchParams }) => {
+
+    const limit = searchParams?.limit != null ? Number(searchParams?.limit) : undefined
+    const links = await getPublicLinks(limit)
+
     return (
         <div className="flex flex-col gap-2">
             <div className="flex gap-2 justify-between">
@@ -26,7 +31,7 @@ const LatestUrlsPage: PageType = () => {
                     <span className="text-zinc-500 text-[0.6rem]"> - Latest project. Video recorder by the browser</span>
                 </Sheet>
             </div>
-            <LinksInfoSection deletable={false} links={Array(40)} />
+            <LinksInfoSection deletable={false} links={links} />
         </div>
     )
 }
