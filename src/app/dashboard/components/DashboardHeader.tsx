@@ -1,50 +1,37 @@
 'use client'
 import { Sheet } from "@/components/ui/Sheet"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { BaseComponentType } from "@/models/component.model"
-import { ArchiveIcon, PlusIcon } from "@radix-ui/react-icons"
+import { BaseComponentProps } from "@/models/component.model"
+import { ArchiveIcon } from "@radix-ui/react-icons"
 import clsx from "clsx"
-import { DashboardForm } from "./DashboardForm/DashboardForm"
+import { FC } from "react"
+import { DashboardFormModal } from "./DashboardFormModal"
 import { DashboardSearchField } from "./DashboardSearchField/DashboardSearchField"
 
-export const DashboardHeader: BaseComponentType = ({ className, ...props }) => {
+export interface DashboardHeaderProps extends BaseComponentProps {
+    linksCount: number
+}
+
+export const DashboardHeader: FC<DashboardHeaderProps> = ({ className, linksCount, ...props }) => {
     return (
         <header
             className={
                 clsx(
-                    "flex items-stretch justify-end w-full gap-2",
+                    "flex items-stretch flex-col sm:flex-row justify-end w-full gap-2",
                     className
                 )
             }
             {...props}
         >
-            <DashboardSearchField />
-            <Sheet
-                className="bg-white flex items-center gap-2 text-xs font-mono font-semibold px-4"
-            >
-                <ArchiveIcon className="text-black" width={18} height={18} />
-                01/40
-            </Sheet>
-            <Dialog>
-                <DialogTrigger asChild>
-                    <Button className="flex gap-2 h-10 text-sm" aria-label="add url">
-                        <PlusIcon width={14} height={14} className=" aspect-square scale-150" />
-                        Add link
-                    </Button>
-                </DialogTrigger>
-                <DialogContent className="font-sans">
-                    <DialogHeader>
-                        <DialogTitle>Add a link</DialogTitle>
-                        <DialogDescription>
-                            The url will be copied to your clipboard when you click add
-                        </DialogDescription>
-                    </DialogHeader>
-                    <div className="flex flex-col gap-2">
-                        <DashboardForm />
-                    </div>
-                </DialogContent>
-            </Dialog >
+            <DashboardSearchField className="order-3 sm:order-1"/>
+            <div className="flex gap-2 order-2 justify-end sm:order-1 sm:flex-row">
+                <Sheet
+                    className="bg-white flex items-center gap-2 text-xs font-mono font-semibold px-4"
+                >
+                    <ArchiveIcon className="text-black" width={18} height={18} />
+                    {linksCount}/40
+                </Sheet>
+                <DashboardFormModal />
+            </div>
         </header >
     )
 }
