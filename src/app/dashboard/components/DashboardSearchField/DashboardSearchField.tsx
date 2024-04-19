@@ -50,7 +50,7 @@ export const DashboardSearchField: FC<PartialSheetProps> = ({ className, ...prop
             <div
                 className={
                     clsx(
-                        "flex items-center absolute top-0 right-0 h-full bg-blue translate-x-10 transition-transform",
+                        "flex items-center absolute top-0 right-0 h-full bg-blue translate-x-10 transition-transform bg-white",
                         currentSearchValue !== '' && '!translate-x-0'
                     )
                 }
