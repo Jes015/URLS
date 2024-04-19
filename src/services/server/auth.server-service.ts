@@ -7,9 +7,9 @@ export const getUserServer = async () => {
 
     const userResponse = await supabase.auth.getUser()
 
-    const isAuth = userResponse.data.user
+    const user = userResponse.data.user
 
-    return isAuth
+    return user
 
 }
 
