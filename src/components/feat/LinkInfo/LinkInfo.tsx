@@ -58,14 +58,14 @@ export const LinkInfo = forwardRef<HTMLDivElement, LinkInfoProps>(
             >
                 <div className="flex items-center flex-grow overflow-clip">
                     <div className="flex items-center text-sm gap-1 ml-1 text-zinc-950">
-                        <Link2Icon width={18} height={18} />
+                        <Link2Icon className="flex-shrink-0" width={18} height={18} />
                         <div
-                            className="flex-grow overflow-clip relative"
+                            className="flex-grow overflow-clip relative flex-shrink-0"
                         >
                             <div
-                                className="flex items-center gap-1 text-sm"
+                                className="flex items-center gap-1 text-sm flex-shrink-0"
                             >
-                                <span className="font-medium text-xs">urls/<span className="text-zinc-700 font-bold">{props.data.urlsid}</span></span>
+                                <span className="font-medium text-xs">urls/<span className="text-zinc-700 font-bold flex-shrink-0">{props.data.urlsid}</span></span>
                                 <span className="font-semibold">to</span>
                                 <TooltipProvider>
                                     <Tooltip>

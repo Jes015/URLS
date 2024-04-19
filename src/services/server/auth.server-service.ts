@@ -1,11 +1,6 @@
 'use server'
-
+import { AuthModalFormSchemaType } from "@/components/feat/AuthModal/models/auth-modal-form.model"
 import { createClient } from "@/utils/supabase/server"
-
-interface AuthFormData {
-    email: string
-    password: string
-}
 
 export const getUserServer = async () => {
     const supabase = createClient()
@@ -18,7 +13,7 @@ export const getUserServer = async () => {
 
 }
 
-export const signIn = async (formData: AuthFormData) => {
+export const signIn = async (formData: AuthModalFormSchemaType) => {
     const supabase = createClient()
 
     const { error, data } = await supabase.auth.signInWithPassword(formData)
@@ -36,15 +31,20 @@ export const signIn = async (formData: AuthFormData) => {
     return response
 }
 
-export const signUp = async (formData: AuthFormData) => {
+export const signUp = async (formData: AuthModalFormSchemaType) => {
     const supabase = createClient()
 
-    const { error } = await supabase.auth.signUp(formData)
+    const { error, data } = await supabase.auth.signUp(formData)
 
-    console.log({ error })
+    console.log({ error, data })
     const response = {
         message: error?.message ?? 'Something went wrong',
         statusCode: error?.status ?? 500
+    }
+
+    if (data.user != null) {
+        response.message = 'Signed up, check your email'
+        response.statusCode = 200
     }
 
     return response

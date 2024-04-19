@@ -9,7 +9,7 @@ export const addLink = async (link: CreateLinkDto) => {
     const user = await getUserServer()
 
     let customResponse = {
-        message: 'User session does not exits',
+        message: 'Log in, please',
         statusCode: 401
     }
 
@@ -40,7 +40,7 @@ export const removeLink = async (urlsId: string) => {
     const user = await getUserServer()
 
     let customResponse = {
-        message: 'User session does not exits',
+        message: 'Log in, please',
         statusCode: 401
     }
 
@@ -68,22 +68,25 @@ export const getUserLinks = async (): Promise<LinkArray> => {
 
     const user = await getUserServer()
 
+    let userLinks: LinkArray = []
+
     if (user != null) {
         const response = await supabase
             .from('user_links')
             .select('*')
             .eq('user_id', user.id)
 
-        return response.data ?? []
+            if (response.data != null) {
+                userLinks = response.data
+            }
     }
 
-    return []
+    return userLinks
 }
 
 export const getOneLink = async (linkId: string): Promise<Link | null> => {
     const supabase = createClient()
 
-    console.log({ linkId })
     const response = await supabase
         .from('user_links')
         .select('*')

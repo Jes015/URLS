@@ -43,8 +43,6 @@ export const DashboardForm: BaseComponentType = (props) => {
         toast[toastType](message)
     })
 
-    console.log({ ...errors })
-
     return (
         <form
             className="flex flex-col gap-2"
