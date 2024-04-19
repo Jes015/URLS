@@ -3,6 +3,10 @@ import { Sheet } from "@/components/ui/Sheet"
 import { PageType } from "@/models/page.model"
 import { getPublicLinks } from "@/services/server/links.server-service"
 
+export const metadata = {
+    title: 'Latest urls'
+}
+
 const LatestUrlsPage: PageType = async ({ searchParams }) => {
 
     const limit = searchParams?.limit != null ? Number(searchParams?.limit) : undefined
