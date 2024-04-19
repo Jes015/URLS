@@ -13,10 +13,11 @@ export const addLink = async (link: CreateLinkDto) => {
         statusCode: 401
     }
 
+    //@
     if (user != null) {
         const response = await supabase
             .from('user_links')
-            .insert({
+            .insert<CreateLinkDto>({
                 ...link,
                 user_id: user.id
             })
@@ -63,7 +64,7 @@ export const removeLink = async (urlsId: string) => {
     return customResponse
 }
 
-export const getUserLinks = async (): Promise<LinkArray> => {
+export const getUserLinks = async (searchParam: string): Promise<LinkArray> => {
     const supabase = createClient()
 
     const user = await getUserServer()
@@ -71,14 +72,25 @@ export const getUserLinks = async (): Promise<LinkArray> => {
     let userLinks: LinkArray = []
 
     if (user != null) {
-        const response = await supabase
+
+        let response = null
+        if (searchParam != null) {
+            response = await supabase
             .from('user_links')
             .select('*')
             .eq('user_id', user.id)
+            ?.ilike('urlsid', `%${searchParam}%`)
+            
+        } else {
+            response = await supabase
+                .from('user_links')
+                .select('*')
+                .eq('user_id', user.id)
+        }
 
-            if (response.data != null) {
-                userLinks = response.data
-            }
+        if (response?.data != null) {
+            userLinks = response.data
+        }
     }
 
     return userLinks

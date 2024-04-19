@@ -43,7 +43,7 @@ export const signUp = async (formData: AuthModalFormSchemaType) => {
     }
 
     if (data.user != null) {
-        response.message = 'Signed up, check your email'
+        response.message = 'Signed up, verify with your email'
         response.statusCode = 200
     }
 

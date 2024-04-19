@@ -1,7 +1,7 @@
 import { BaseComponentType } from "@/models/component.model"
 import clsx from "clsx"
 import { SideBarNavigation } from "./SideBarNavigation"
-import { UserButton } from "./UserButton"
+import { UserData } from "./UserData"
 
 export const Sidebar: BaseComponentType = ({ className, ...props }) => {
     return (
@@ -19,7 +19,7 @@ export const Sidebar: BaseComponentType = ({ className, ...props }) => {
             </header>
             <SideBarNavigation />
             <footer>
-                <UserButton />
+                <UserData />
             </footer>
         </aside>
     )
