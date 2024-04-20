@@ -13,23 +13,35 @@ export const addLink = async (link: Omit<CreateLinkDto, 'user_id'>) => {
         statusCode: 401
     }
 
-    //@
-    if (user != null) {
-        const response = await supabase
-            .from('user_links')
-            .insert<CreateLinkDto>({
-                ...link,
-                user_id: user.id
-            })
 
-        if (response.error != null) {
-            customResponse.statusCode = 500
-            customResponse.message = response.error.message
+    if (user != null) {
+        const userLinks = await supabase
+            .from('user_links')
+            .select('*')
+            .eq('user_id', user.id)
+
+        console.log({ userLinksNumber: userLinks })
+        if (userLinks.data?.length != null && userLinks.data.length >= 40 ) {
+            customResponse.statusCode = 403
+            customResponse.message = 'Only 40 urls per user'
+        } else {
+            const response = await supabase
+                .from('user_links')
+                .insert<CreateLinkDto>({
+                    ...link,
+                    user_id: user.id
+                })
+
+            if (response.error != null) {
+                customResponse.statusCode = 500
+                customResponse.message = response.error.message
+            }
+            else {
+                customResponse.statusCode = 200
+                customResponse.message = 'Url added'
+            }
         }
-        else {
-            customResponse.statusCode = 200
-            customResponse.message = 'Url added'
-        }
+
     }
 
     return customResponse
@@ -79,6 +91,7 @@ export const getUserLinks = async (searchParam: string | null): Promise<LinkArra
                 .from('user_links')
                 .select('*')
                 .eq('user_id', user.id)
+                .order('created_at', { ascending: false })
                 ?.ilike('urlsid', `%${searchParam}%`)
 
         } else {
@@ -86,6 +99,7 @@ export const getUserLinks = async (searchParam: string | null): Promise<LinkArra
                 .from('user_links')
                 .select('*')
                 .eq('user_id', user.id)
+                .order('created_at', { ascending: false })
         }
 
         if (response?.data != null) {
