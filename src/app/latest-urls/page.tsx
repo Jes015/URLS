@@ -9,7 +9,7 @@ export const metadata = {
 
 const LatestUrlsPage: PageType = async ({ searchParams }) => {
 
-    const limit = searchParams?.limit != null ? Number(searchParams?.limit) : undefined
+    const limit = 80
     const links = await getPublicLinks(limit)
 
     return (
