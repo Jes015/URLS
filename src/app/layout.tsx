@@ -5,6 +5,7 @@ import { BookmarkFilledIcon, GitHubLogoIcon } from '@radix-ui/react-icons'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from "next"
+import { Suspense } from 'react'
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -20,40 +21,42 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
-        <GlobalClientComponents />
-        <div className='flex w-full font-sans max-w-[1440px] m-auto'>
-          <Sidebar className='border-r' />
-          <div className='flex flex-col min-h-dvh w-full overflow-y-auto'>
-            <div className='flex justify-between border-b w-full p-2 text-xs text-zinc-700 bg-white'>
-              <div className='flex gap-1 items-center'>
-                <BookmarkFilledIcon width={16} height={16} className='text-zinc-900' />
-                <div className='flex gap-1'>
-                  <Highlight variant='waves'>
-                    URLS
-                  </Highlight>
-                  <span>
-                    was made for the
-                  </span>
+        <Suspense>
+          <GlobalClientComponents />
+          <div className='flex w-full font-sans max-w-[1440px] m-auto'>
+            <Sidebar className='border-r' />
+            <div className='flex flex-col min-h-dvh w-full overflow-y-auto'>
+              <div className='flex justify-between border-b w-full p-2 text-xs text-zinc-700 bg-white'>
+                <div className='flex gap-1 items-center'>
+                  <BookmarkFilledIcon width={16} height={16} className='text-zinc-900' />
+                  <div className='flex gap-1'>
+                    <Highlight variant='waves'>
+                      URLS
+                    </Highlight>
+                    <span>
+                      was made for the
+                    </span>
+                  </div>
+                  <a
+                    href='https://supabase.com/blog/supabase-oss-hackathon'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    April{'\''}s 2024 Supabase Hackaton
+                  </a>
                 </div>
-                <a
-                  href='https://supabase.com/blog/supabase-oss-hackathon'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  April{'\''}s 2024 Supabase Hackaton
-                </a>
+                <div>
+                  <a href='https://github.com/Jes015/URLS' target='_blank'>
+                    <GitHubLogoIcon width={18} height={18} />
+                  </a>
+                </div>
               </div>
-              <div>
-                <a href='https://github.com/Jes015/URLS' target='_blank'>
-                  <GitHubLogoIcon width={18} height={18} />
-                </a>
-              </div>
+              <main className='m-2'>
+                {children}
+              </main>
             </div>
-            <main className='m-2'>
-              {children}
-            </main>
           </div>
-        </div>
+        </Suspense>
       </body>
     </html>
   )
