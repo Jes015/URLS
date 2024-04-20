@@ -1,4 +1,4 @@
-import { type BaseComponentType } from '@/models'
+import { BaseComponentType } from '@/models/component.model'
 import clsx from 'clsx'
 
 export const TextFieldLabel: BaseComponentType = ({ children, className }) => {
