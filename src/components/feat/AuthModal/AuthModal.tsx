@@ -41,6 +41,10 @@ export const AuthModal: BaseComponentType = () => {
         toast[toastType](message)
     }
 
+    const handleOnSubmitSuccess = () => {
+        toggleIsAuth(true)
+    }
+
     return (
         <Dialog open={modalOpen} onOpenChange={handleOnDialogChange}>
             <DialogContent className="font-sans">
@@ -68,7 +72,7 @@ export const AuthModal: BaseComponentType = () => {
                                 <TabsTrigger className='border border-transparent  data-[state=active]:border-neutral-300' value="Sign up">Sign up</TabsTrigger>
                             </TabsList>
                             <TabsContent value="Sign in">
-                                <SignInForm />
+                                <SignInForm onSuccess={handleOnSubmitSuccess} />
                             </TabsContent>
                             <TabsContent value="Sign up">
                                 <SignUpForm />

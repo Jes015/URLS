@@ -3,17 +3,21 @@ import { TextField } from "@/components/ui/TextField/TextField"
 import { TextFieldError } from "@/components/ui/TextField/components/TextFieldError"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentProps } from "@/models/component.model"
 import { ToastType } from "@/models/toast.model"
 import { authModalService } from "@/services/client/auth-modal.service"
 import { signIn } from "@/services/server/auth.server-service"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
+import { FC, useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { AuthModalFormSchemaType, authModalFormInputs, authModalFormSchema } from "../models/auth-modal-form.model"
 
-export const SignInForm: BaseComponentType = ({ className, ...props }) => {
+interface SignInFormProps extends BaseComponentProps {
+    onSuccess?: () => void
+}
+
+export const SignInForm: FC<SignInFormProps> = ({ className, onSuccess, ...props }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<AuthModalFormSchemaType>({ resolver: zodResolver(authModalFormSchema) })
     const [loading, setLoading] = useState(false)
 
@@ -29,6 +33,7 @@ export const SignInForm: BaseComponentType = ({ className, ...props }) => {
             toastType = 'error'
         } else {
             authModalService.sendMessage({ detail: false })
+            onSuccess?.()
         }
 
 
