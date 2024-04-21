@@ -36,7 +36,6 @@ export const signUp = async (formData: AuthModalFormSchemaType) => {
 
     const { error, data } = await supabase.auth.signUp(formData)
 
-    console.log({ error, data })
     const response = {
         message: error?.message ?? 'Something went wrong',
         statusCode: error?.status ?? 500
@@ -50,4 +49,20 @@ export const signUp = async (formData: AuthModalFormSchemaType) => {
     return response
 }
 
-export const signOut = () => { }
+export const signOut = async () => {
+    const supabase = createClient()
+    
+    const { error } = await supabase.auth.signOut()
+
+    let response = {
+        message: error?.message ?? 'Something went wrong',
+        statusCode: error?.status ?? 500
+    }
+
+    if (error == null) {
+        response.message = 'Signed out'
+        response.statusCode = 200
+    }
+
+    return response
+}
