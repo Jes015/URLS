@@ -20,7 +20,6 @@ export const addLink = async (link: Omit<CreateLinkDto, 'user_id'>) => {
             .select('*')
             .eq('user_id', user.id)
 
-        console.log({ userLinksNumber: userLinks })
         if (userLinks.data?.length != null && userLinks.data.length >= 40 ) {
             customResponse.statusCode = 403
             customResponse.message = 'Only 40 urls per user'

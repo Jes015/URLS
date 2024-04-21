@@ -40,7 +40,6 @@ export const AuthModal: BaseComponentType = () => {
 
         toast[toastType](message)
     }
-    console.log({ isAuth })
 
     return (
         <Dialog open={modalOpen} onOpenChange={handleOnDialogChange}>
