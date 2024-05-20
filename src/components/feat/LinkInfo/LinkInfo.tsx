@@ -71,7 +71,7 @@ export const LinkInfo = forwardRef<HTMLDivElement, LinkInfoProps>(
                                     <Tooltip>
                                         <TooltipTrigger asChild>
                                             <a
-                                                href="/"
+                                                href={props.data.realurl}
                                                 className="text-blue-500 decoration-solid font-semibold text-xs whitespace-nowrap"
                                                 target="_blank"
                                             >
